@@ -1,0 +1,233 @@
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+const HomePage = () => {
+  const videoIds = [
+    "dQw4w9WgXcQ",
+    "3JZ_D3ELwOQ",
+    "L_jWHffIx5E",
+    "9bZkp7q19f0",
+    "eVTXPUF4Oz4",
+    "2Vv-BfVoq4g",
+  ];
+
+  const heroStyle = {
+    position: "relative",
+    width: "100%",
+    maxWidth: "1200px",
+    boxSizing: "border-box",
+    height: "90vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start", // align content from top
+    textAlign: "center",
+    padding: "3rem 1rem 0 1rem", // added 3rem padding-top
+    margin: "0 auto",
+    marginBottom: "10rem", // increased spacing between hero buttons and videos section
+    // Removed backgroundColor
+  };
+
+  const flyerStyle = {
+    width: "100%",
+    maxWidth: "1200px",
+    maxHeight: "70vh",
+    objectFit: "contain",
+    borderRadius: "0.5rem",
+    boxShadow: "0 8px 16px rgba(0,0,0,0.6)",
+    boxSizing: "border-box",
+  };
+
+  const buttonStyle = {
+    marginTop: "2rem",
+    backgroundColor: "#e62b1e",
+    color: "white",
+    padding: "0.75rem 1.5rem",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    borderRadius: "0.375rem",
+    border: "none",
+    cursor: "pointer",
+    transition: "all 0.3s",
+    textDecoration: "none",
+    display: "inline-block",
+  };
+
+  const hoverButtonStyle = {
+    backgroundColor: "#b8261a",
+    transform: "scale(1.05)",
+  };
+
+  const videosSectionStyle = {
+    padding: "5rem 1.5rem",
+    backgroundColor: "black",
+    textAlign: "center",
+    maxWidth: "1200px",
+    margin: "0 auto",
+    boxSizing: "border-box",
+  };
+
+  const videosGridStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "2rem",
+    marginTop: "2rem",
+    boxSizing: "border-box",
+    maxWidth: "100%",
+  };
+
+  const iframeWrapperStyle = {
+    position: "relative",
+    paddingBottom: "56.25%",
+    height: 0,
+    overflow: "hidden",
+    borderRadius: "0.5rem",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+    boxSizing: "border-box",
+    maxWidth: "100%",
+    width: "100%",
+  };
+
+  const iframeStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    border: "0",
+    boxSizing: "border-box",
+  };
+
+  const eventDate = new Date("December 15, 2025 18:00:00").getTime();
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const countdownStyle = {
+    color: "white",
+    fontSize: "2.5rem",
+    fontWeight: "900",
+    marginTop: "2rem",
+    textAlign: "center",
+    padding: "1rem 2rem",
+    borderRadius: "1rem",
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    letterSpacing: "0.1em",
+    textShadow: "2px 2px 8px rgba(0,0,0,0.8)",
+  };
+
+  return (
+    <div
+      style={{
+        backgroundColor: "black",
+        color: "white",
+        fontFamily: "sans-serif",
+        overflowX: "hidden",
+        boxSizing: "border-box",
+      }}
+    >
+      {/* Hero Section */}
+      <section style={heroStyle}>
+        <img
+          src="https://static.wixstatic.com/media/3a9766_3e37623bdebc453a8f2bc602f3889377~mv2.png/v1/fill/w_1920,h_1078,al_c,q_95,enc_avif,quality_auto/3a9766_3e37623bdebc453a8f2bc602f3889377~mv2.png"
+          alt="TEDxUTD Upcoming Event"
+          style={flyerStyle}
+        />
+        <div style={countdownStyle}>
+          {`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
+        </div>
+        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "1.5rem", flexWrap: "wrap" }}>
+          <a
+            href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=TEDxUTD+2025&dates=20251215T180000Z/20251215T200000Z&details=Join+us+at+TEDxUTD+2025&sf=true&output=xml`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={buttonStyle}
+            onMouseEnter={(e) => Object.assign(e.target.style, hoverButtonStyle)}
+            onMouseLeave={(e) => Object.assign(e.target.style, buttonStyle)}
+          >
+            Add to Google Calendar
+          </a>
+          <a
+            href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:TEDxUTD 2025%0ADTSTART:20251215T180000Z%0ADTEND:20251215T200000Z%0ALOCATION:UT Dallas%0ADESCRIPTION:Join us at TEDxUTD 2025%0AEND:VEVENT%0AEND:VCALENDAR"
+            download="TEDxUTD2025.ics"
+            style={buttonStyle}
+            onMouseEnter={(e) => Object.assign(e.target.style, hoverButtonStyle)}
+            onMouseLeave={(e) => Object.assign(e.target.style, buttonStyle)}
+          >
+            Add to iCal/Outlook
+          </a>
+        </div>
+        <Link
+          to="/events"
+          style={buttonStyle}
+          onMouseEnter={(e) => Object.assign(e.target.style, hoverButtonStyle)}
+          onMouseLeave={(e) => Object.assign(e.target.style, buttonStyle)}
+        >
+          Check out our other upcoming events!
+        </Link>
+      </section>
+
+      {/* Featured Videos */}
+      <section style={videosSectionStyle}>
+        <h2 style={{ fontSize: "2.5rem", fontWeight: "800" }}>2024 Highlight Videos</h2>
+        <div style={videosGridStyle}>
+          {videoIds.map((id, index) => (
+            <div key={index} style={iframeWrapperStyle}>
+              <iframe
+                style={iframeStyle}
+                src={`https://www.youtube.com/embed/${id}`}
+                title={`TEDxUTD Talk ${index + 1}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "1rem",
+            marginTop: "2rem",
+            boxSizing: "border-box",
+            maxWidth: "100%",
+          }}
+        >
+          <Link
+            to="/talks"
+            style={buttonStyle}
+            onMouseEnter={(e) => Object.assign(e.target.style, hoverButtonStyle)}
+            onMouseLeave={(e) => Object.assign(e.target.style, buttonStyle)}
+          >
+            Check out other TEDxUTD talks!
+          </Link>
+          <Link
+            to="/conference2024"
+            style={buttonStyle}
+            onMouseEnter={(e) => Object.assign(e.target.style, hoverButtonStyle)}
+            onMouseLeave={(e) => Object.assign(e.target.style, buttonStyle)}
+          >
+            Learn more about the 2024 Conference!
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default HomePage;
