@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -13,10 +11,27 @@ const AboutPage = () => {
   ];
 
   const team = [
-    { name: "Jane Doe", role: "President" },
-    { name: "John Smith", role: "Vice President" },
-    { name: "Alice Johnson", role: "Event Coordinator" },
-    { name: "Michael Lee", role: "Marketing Lead" },
+    { name: "Asmita Vadde", role: "President" },
+    { name: "Salsabil Aziz", role: "Vice President" },
+    { name: "Shriya Kalyan", role: "Director of Technology" },
+    { name: "Mariyah Syed", role: "Director of Licensing" },
+    { name: "Kaylyn Lau", role: "Director of Fundraising (Treasurer)" },
+    { name: "Pranavi Yedluri", role: "Director of Logistics" },
+    { name: "Madhuvanthi Magge", role: "Director of Logistics" },
+    { name: "Ananya Karthik", role: "Director of Content" },
+    { name: "Samantha Vuong", role: "Director of Outreach" },
+    { name: "Isma Siddiqi", role: "Director of Design" },
+    { name: "Saamya Gupta", role: "Director of Design" },
+    { name: "Yusra Mohammed", role: "Director of Operations (Secretary)" },
+    { name: "Preet Patel", role: "Director of Operations (Secretary)" },
+    { name: "Khaylenn Cortez", role: "Director of Marketing" },
+    { name: "Duaa Sarayi", role: "Outreach Assistant" },
+    { name: "Nu Nguyen", role: "Design Assistant" },
+    { name: "Fatma Ikibas", role: "Marketing Committee" },
+    { name: "Nandini Patel", role: "Marketing Committee" },
+    { name: "Raagavika Govindarajan", role: "Logistics Assistant" },
+    { name: "Abhilash Kulkarni", role: "Logistics Committee" },
+    { name: "Rohit Savant", role: "Photographer/Videographer" },
   ];
 
   // Inline style objects
@@ -251,7 +266,15 @@ const AboutPage = () => {
               style={teamCard}
             >
               <div style={teamPhoto}>
-                Photo
+                {member.name === "Shriya Kalyan" ? (
+                  <img
+                    src="https://media.licdn.com/dms/image/v2/D5603AQHC_6N0Rqw0yA/profile-displayphoto-scale_400_400/B56ZlOA7npJwAg-/0/1757950491872?e=2147483647&v=beta&t=Kv2fPQDTejv1ICd-Dz-ySEm1t8PQZYdW48brIaMFIlI"
+                    alt="Shriya Kalyan"
+                    style={{ width: "128px", height: "128px", borderRadius: "50%", objectFit: "cover" }}
+                  />
+                ) : (
+                  "Photo"
+                )}
               </div>
               <h3 style={teamName}>{member.name}</h3>
               <p style={teamRole}>{member.role}</p>

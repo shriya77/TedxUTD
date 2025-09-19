@@ -115,7 +115,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div style={bottomBarStyle}>
-        © {new Date().getFullYear()} TEDxUTD. All rights reserved.
+        © Copyright {new Date().getFullYear()} TEDxUTD. This independent TEDx event is operated under license from TED.
       </div>
     </footer>
   );

@@ -226,6 +226,85 @@ const HomePage = () => {
           </Link>
         </div>
       </section>
+
+      {/* Contact Form */}
+      <section
+        style={{
+          padding: "5rem 1.5rem",
+          backgroundColor: "#111",
+          color: "white",
+          textAlign: "center",
+          marginTop: "4rem",
+        }}
+      >
+        <h2 style={{ fontSize: "2.5rem", fontWeight: "800", marginBottom: "2rem" }}>
+          Contact Us
+        </h2>
+        <form
+          style={{
+            maxWidth: "600px",
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: "1.5rem",
+          }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            alert("Message sent! (This is a demo)");
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Your Name"
+            required
+            style={{
+              padding: "1rem",
+              borderRadius: "0.5rem",
+              border: "1px solid #333",
+              backgroundColor: "black",
+              color: "white",
+              fontSize: "1rem",
+              outline: "none",
+            }}
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            required
+            style={{
+              padding: "1rem",
+              borderRadius: "0.5rem",
+              border: "1px solid #333",
+              backgroundColor: "black",
+              color: "white",
+              fontSize: "1rem",
+              outline: "none",
+            }}
+          />
+          <textarea
+            placeholder="Your Message"
+            rows="5"
+            required
+            style={{
+              padding: "1rem",
+              borderRadius: "0.5rem",
+              border: "1px solid #333",
+              backgroundColor: "black",
+              color: "white",
+              fontSize: "1rem",
+              outline: "none",
+            }}
+          />
+          <button
+            type="submit"
+            style={buttonStyle}
+            onMouseEnter={(e) => Object.assign(e.target.style, hoverButtonStyle)}
+            onMouseLeave={(e) => Object.assign(e.target.style, buttonStyle)}
+          >
+            Send Message
+          </button>
+        </form>
+      </section>
     </div>
   );
 };
