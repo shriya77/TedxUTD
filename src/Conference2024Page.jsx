@@ -30,21 +30,12 @@ const Conference2024Page = () => {
   return (
     <>
       <style>{`
-        .container {
-          box-sizing: border-box;
-          max-width: 100%;
-          overflow-x: hidden;
-          background-color: #000000;
-          color: white;
-          font-family: sans-serif;
-          margin: 0;
-          padding: 0;
-        }
         .section {
           padding: 3rem 1.5rem;
           box-sizing: border-box;
           max-width: 100%;
           overflow-x: hidden;
+          width: 100%;
         }
         .section.px-md {
           padding-left: 5rem;
@@ -89,8 +80,7 @@ const Conference2024Page = () => {
           grid-template-columns: 1fr;
           gap: 2rem;
           max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
+          width: 100%;
           box-sizing: border-box;
           overflow-x: hidden;
         }
@@ -134,8 +124,7 @@ const Conference2024Page = () => {
           grid-template-columns: 1fr;
           gap: 2rem;
           max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
+          width: 100%;
           box-sizing: border-box;
           overflow-x: hidden;
         }
@@ -191,8 +180,7 @@ const Conference2024Page = () => {
           grid-template-columns: 1fr;
           gap: 2rem;
           max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
+          width: 100%;
           box-sizing: border-box;
           overflow-x: hidden;
         }
@@ -233,6 +221,7 @@ const Conference2024Page = () => {
           box-sizing: border-box;
           max-width: 100%;
           overflow-x: hidden;
+          margin-top: auto;
         }
         .cta-button {
           background-color: #e62b1e;
@@ -255,76 +244,91 @@ const Conference2024Page = () => {
           background-color: #b52316;
         }
       `}</style>
-      <div className="container">
-        {/* Hero Title */}
-        <section className="section text-center">
-          <h1>TEDxUTD 2024 Conference</h1>
-        </section>
+      <div
+        style={{
+          backgroundColor: "black",
+          color: "white",
+          fontFamily: "sans-serif",
+          margin: 0,
+          padding: 0,
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          overflowX: "hidden",
+          boxSizing: "border-box",
+        }}
+      >
+        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          {/* Hero Title */}
+          <section className="section text-center">
+            <h1>TEDxUTD 2024 Conference</h1>
+          </section>
 
-        {/* Theme Summary */}
-        <section className="section px-md">
-          <blockquote>
-            "Exploring Boundaries, Igniting Ideas" – The 2024 TEDxUTD theme
-            celebrated innovation, leadership, and the power of community.
-          </blockquote>
-        </section>
+          {/* Theme Summary */}
+          <section className="section px-md">
+            <blockquote>
+              "Exploring Boundaries, Igniting Ideas" – The 2024 TEDxUTD theme
+              celebrated innovation, leadership, and the power of community.
+            </blockquote>
+          </section>
 
-        {/* Video Grid */}
-        <section className="section px-md">
-          <h2 style={{ fontSize: "2.25rem", fontWeight: "700", marginBottom: "2.5rem", textAlign: "center" }}>
-            Conference Talks
-          </h2>
-          <div className="video-grid">
-            {videoIds.map((id, index) => (
-              <div key={index} className="video-wrapper">
-                <iframe
-                  src={`https://www.youtube.com/embed/${id}`}
-                  title={`Conference Talk ${index + 1}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            ))}
-          </div>
-        </section>
+          {/* Video Grid */}
+          <section className="section px-md">
+            <h2 style={{ fontSize: "2.25rem", fontWeight: "700", marginBottom: "2.5rem", textAlign: "center" }}>
+              Conference Talks
+            </h2>
+            <div className="video-grid">
+              {videoIds.map((id, index) => (
+                <div key={index} className="video-wrapper">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${id}`}
+                    title={`Conference Talk ${index + 1}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
 
-        {/* Speaker Highlights */}
-        <section className="section px-md speakers-section">
-          <h2 style={{ fontSize: "2.25rem", fontWeight: "700", marginBottom: "2.5rem", textAlign: "center" }}>
-            Speaker Highlights
-          </h2>
-          <div className="speakers-grid">
-            {speakers.map((speaker, idx) => (
-              <div key={idx} className="speaker-card" tabIndex={0} aria-label={`Speaker ${speaker.name}`}>
-                <div className="speaker-photo">Photo</div>
-                <h3 className="speaker-name">{speaker.name}</h3>
-                <p className="speaker-description">{speaker.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+          {/* Speaker Highlights */}
+          <section className="section px-md speakers-section">
+            <h2 style={{ fontSize: "2.25rem", fontWeight: "700", marginBottom: "2.5rem", textAlign: "center" }}>
+              Speaker Highlights
+            </h2>
+            <div className="speakers-grid">
+              {speakers.map((speaker, idx) => (
+                <div key={idx} className="speaker-card" tabIndex={0} aria-label={`Speaker ${speaker.name}`}>
+                  <div className="speaker-photo">Photo</div>
+                  <h3 className="speaker-name">{speaker.name}</h3>
+                  <p className="speaker-description">{speaker.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
 
-        {/* Testimonials */}
-        <section className="section px-md">
-          <h2 style={{ fontSize: "2.25rem", fontWeight: "700", marginBottom: "2.5rem", textAlign: "center" }}>
-            What People Said
-          </h2>
-          <div className="testimonials-grid">
-            {testimonials.map((t, idx) => (
-              <div key={idx} className="testimonial-card" tabIndex={0} aria-label={`Testimonial by ${t.author}`}>
-                <p className="testimonial-text">"{t.text}"</p>
-                <p className="testimonial-author">– {t.author}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+          {/* Testimonials */}
+          <section className="section px-md">
+            <h2 style={{ fontSize: "2.25rem", fontWeight: "700", marginBottom: "2.5rem", textAlign: "center" }}>
+              What People Said
+            </h2>
+            <div className="testimonials-grid">
+              {testimonials.map((t, idx) => (
+                <div key={idx} className="testimonial-card" tabIndex={0} aria-label={`Testimonial by ${t.author}`}>
+                  <p className="testimonial-text">"{t.text}"</p>
+                  <p className="testimonial-author">– {t.author}</p>
+                </div>
+              ))}
+            </div>
+          </section>
 
-        {/* CTA */}
-        <section className="cta-section">
-          <Link to="/events" className="cta-button" aria-label="Stay tuned for our next conference!">
-            Stay tuned for our next conference!
-          </Link>
-        </section>
+          {/* CTA */}
+          <section className="cta-section">
+            <Link to="/events" className="cta-button" aria-label="Stay tuned for our next conference!">
+              Stay tuned for our next conference!
+            </Link>
+          </section>
+        </div>
       </div>
     </>
   );

@@ -137,7 +137,16 @@ const HomePage = () => {
         color: "white",
         fontFamily: "sans-serif",
         overflowX: "hidden",
+        overflowY: "auto",
         boxSizing: "border-box",
+        margin: 0,
+        padding: 0,
+        width: "100%",
+        minWidth: "100vw",
+        minHeight: "100vh",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       {/* Hero Section */}
@@ -231,7 +240,7 @@ const HomePage = () => {
       <section
         style={{
           padding: "5rem 1.5rem",
-          backgroundColor: "#111",
+          backgroundColor: "black",
           color: "white",
           textAlign: "center",
           marginTop: "4rem",

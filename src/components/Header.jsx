@@ -112,12 +112,10 @@ export default function Header() {
   // Handlers for nav link hover effects
   const handleMouseEnter = (e) => {
     e.target.style.color = linkHoverStyle.color;
-    e.target.style.textDecoration = "underline";
   };
 
   const handleMouseLeave = (e) => {
     e.target.style.color = linkStyle.color;
-    e.target.style.textDecoration = "none";
   };
 
   // Handlers for social link hover effects
@@ -148,7 +146,7 @@ export default function Header() {
             { to: "/talks", label: "Talks" },
             { to: "/events", label: "Events" },
             { to: "/conference2024", label: "2024 Conference" },
-            { to: "/about", label: "About" },
+            { to: "/about", label: "About Us" },
           ].map((item, idx) => (
             <Link
               key={idx}

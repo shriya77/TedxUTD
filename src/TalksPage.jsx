@@ -62,14 +62,10 @@ const TalksPage = () => {
 
   const styles = {
     page: {
-      backgroundColor: "black",
-      color: "white",
-      minHeight: "100vh",
-      fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-      padding: "48px 24px",
-      boxSizing: "border-box",
       maxWidth: "1200px",
       margin: "0 auto",
+      padding: "48px 24px",
+      boxSizing: "border-box",
       overflowX: "hidden",
     },
     title: {
@@ -235,86 +231,106 @@ const TalksPage = () => {
   const [hoveredCardId, setHoveredCardId] = useState(null);
 
   return (
-    <div style={styles.page}>
-      {/* Title */}
-      <h1 style={styles.title}>Explore TEDxUTD Talks</h1>
+    <div
+      style={{
+        backgroundColor: "black",
+        color: "white",
+        fontFamily: "sans-serif",
+        overflowX: "auto",
+        boxSizing: "border-box",
+        margin: 0,
+        padding: 0,
+        minHeight: "100vh",
+        display: "flex",
+        minWidth: "100vw",
+        flexDirection: "column",
+      }}
+    >
+      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+        <div style={styles.page}>
+          <div style={{ flex: 1 }}>
+            {/* Title */}
+            <h1 style={styles.title}>Explore TEDxUTD Talks</h1>
 
-      {/* Filters */}
-      <div style={styles.filtersContainer}>
-        <select
-          value={yearFilter}
-          onChange={(e) => setYearFilter(e.target.value)}
-          style={{
-            ...styles.select,
-            ...(yearSelectFocused || yearSelectHovered ? styles.selectHoverFocus : {}),
-          }}
-          onFocus={() => setYearSelectFocused(true)}
-          onBlur={() => setYearSelectFocused(false)}
-          onMouseEnter={() => setYearSelectHovered(true)}
-          onMouseLeave={() => setYearSelectHovered(false)}
-          aria-label="Filter by year"
-        >
-          <option value="">All Years</option>
-          <option value="2025">2025</option>
-          <option value="2024">2024</option>
-          <option value="2021">2021</option>
-          <option value="2019">2019</option>
-          <option value="2017">2017</option>
-        </select>
-        <select
-          value={topicFilter}
-          onChange={(e) => setTopicFilter(e.target.value)}
-          style={{
-            ...styles.select,
-            ...(topicSelectFocused || topicSelectHovered ? styles.selectHoverFocus : {}),
-          }}
-          onFocus={() => setTopicSelectFocused(true)}
-          onBlur={() => setTopicSelectFocused(false)}
-          onMouseEnter={() => setTopicSelectHovered(true)}
-          onMouseLeave={() => setTopicSelectHovered(false)}
-          aria-label="Filter by topic"
-        >
-          <option value="">All Topics</option>
-          <option value="Innovation">Innovation</option>
-          <option value="Leadership">Leadership</option>
-          <option value="Design">Design</option>
-        </select>
-      </div>
+            {/* Filters */}
+            <div style={styles.filtersContainer}>
+              <select
+                value={yearFilter}
+                onChange={(e) => setYearFilter(e.target.value)}
+                style={{
+                  ...styles.select,
+                  ...(yearSelectFocused || yearSelectHovered ? styles.selectHoverFocus : {}),
+                }}
+                onFocus={() => setYearSelectFocused(true)}
+                onBlur={() => setYearSelectFocused(false)}
+                onMouseEnter={() => setYearSelectHovered(true)}
+                onMouseLeave={() => setYearSelectHovered(false)}
+                aria-label="Filter by year"
+              >
+                <option value="">All Years</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2021">2021</option>
+                <option value="2019">2019</option>
+                <option value="2017">2017</option>
+              </select>
+              <select
+                value={topicFilter}
+                onChange={(e) => setTopicFilter(e.target.value)}
+                style={{
+                  ...styles.select,
+                  ...(topicSelectFocused || topicSelectHovered ? styles.selectHoverFocus : {}),
+                }}
+                onFocus={() => setTopicSelectFocused(true)}
+                onBlur={() => setTopicSelectFocused(false)}
+                onMouseEnter={() => setTopicSelectHovered(true)}
+                onMouseLeave={() => setTopicSelectHovered(false)}
+                aria-label="Filter by topic"
+              >
+                <option value="">All Topics</option>
+                <option value="Innovation">Innovation</option>
+                <option value="Leadership">Leadership</option>
+                <option value="Design">Design</option>
+              </select>
+            </div>
 
-      {/* Grid */}
-      <div style={styles.grid}>
-        {filteredTalks.map((talk) => (
-          <div
-            key={talk.id}
-            style={{
-              ...styles.card,
-              ...(hoveredCardId === talk.id ? styles.cardHover : {}),
-            }}
-            onClick={() => setSelectedTalk(talk)}
-            onMouseEnter={() => setHoveredCardId(talk.id)}
-            onMouseLeave={() => setHoveredCardId(null)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                setSelectedTalk(talk);
-              }
-            }}
-            aria-label={`Open talk: ${talk.title} by ${talk.speaker}`}
-          >
-            <img
-              src={talk.thumbnail}
-              alt={talk.title}
-              style={styles.cardImage}
-              draggable={false}
-            />
-            <div style={styles.cardContent}>
-              <h2 style={styles.cardTitle}>{talk.title}</h2>
-              <p style={styles.cardSpeaker}>{talk.speaker}</p>
+            {/* Grid */}
+            <div style={styles.grid}>
+              {filteredTalks.map((talk) => (
+                <div
+                  key={talk.id}
+                  style={{
+                    ...styles.card,
+                    ...(hoveredCardId === talk.id ? styles.cardHover : {}),
+                  }}
+                  onClick={() => setSelectedTalk(talk)}
+                  onMouseEnter={() => setHoveredCardId(talk.id)}
+                  onMouseLeave={() => setHoveredCardId(null)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedTalk(talk);
+                    }
+                  }}
+                  aria-label={`Open talk: ${talk.title} by ${talk.speaker}`}
+                >
+                  <img
+                    src={talk.thumbnail}
+                    alt={talk.title}
+                    style={styles.cardImage}
+                    draggable={false}
+                  />
+                  <div style={styles.cardContent}>
+                    <h2 style={styles.cardTitle}>{talk.title}</h2>
+                    <p style={styles.cardSpeaker}>{talk.speaker}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Modal */}

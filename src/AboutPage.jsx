@@ -41,7 +41,8 @@ const AboutPage = () => {
     fontFamily: "sans-serif",
     minHeight: "100vh",
     boxSizing: "border-box",
-    overflowX: "hidden",
+    overflowX: "auto",
+    minWidth: "100vw",
   };
   const heroSection = {
     padding: "80px 0 80px 0",

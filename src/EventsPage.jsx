@@ -68,7 +68,8 @@ const EventsPage = () => {
     minHeight: "100vh",
     fontFamily: "sans-serif",
     padding: "48px 24px",
-    overflowX: "hidden",
+    overflowX: "auto",
+    minWidth: "100vw",
     boxSizing: "border-box",
   };
 
