@@ -236,14 +236,16 @@ const TalksPage = () => {
         backgroundColor: "black",
         color: "white",
         fontFamily: "sans-serif",
-        overflowX: "auto",
+        overflowX: "hidden",
+        overflowY: "visible",
         boxSizing: "border-box",
         margin: 0,
         padding: 0,
         minHeight: "100vh",
+        width: "100vw",
         display: "flex",
-        minWidth: "100vw",
         flexDirection: "column",
+        justifyContent: "flex-start",
       }}
     >
       <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
