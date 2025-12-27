@@ -236,7 +236,7 @@ const AboutPage = () => {
           overall mission to research and discover “ideas worth spreading.” At
           TEDxUTD, we aim to amplify the voices of our diverse community,
           empowering students, faculty, and leaders to share groundbreaking
-          ideas that inspire change. (Placeholder text)
+          ideas that inspire change.
         </p>
       </section>
 
