@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import homepagePoster from "./assets/homepageposter.png";
 
 const HomePage = () => {
   const videoIds = [
-    "dQw4w9WgXcQ",
-    "3JZ_D3ELwOQ",
-    "L_jWHffIx5E",
-    "9bZkp7q19f0",
-    "eVTXPUF4Oz4",
-    "2Vv-BfVoq4g",
+    "H5crR0xM9Sk",
+    "TSuoSdPVm9k",
+    "0UNsqgkO7xk",
+    "7CVJXd44Hek",
+    "_4UrEpTi9gY",
+    "15qJ6iDrLM0",
+    "cEuSC2wtxxU",
+    "8lUaf78DFAQ"
   ];
 
   const heroStyle = {
@@ -98,7 +101,7 @@ const HomePage = () => {
     boxSizing: "border-box",
   };
 
-  const eventDate = new Date("December 15, 2025 18:00:00").getTime();
+  const eventDate = new Date("January 9, 2026 23:59:00").getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -151,11 +154,13 @@ const HomePage = () => {
     >
       {/* Hero Section */}
       <section style={heroStyle}>
-        <img
-          src="https://static.wixstatic.com/media/3a9766_3e37623bdebc453a8f2bc602f3889377~mv2.png/v1/fill/w_1920,h_1078,al_c,q_95,enc_avif,quality_auto/3a9766_3e37623bdebc453a8f2bc602f3889377~mv2.png"
-          alt="TEDxUTD Upcoming Event"
-          style={flyerStyle}
-        />
+        <a href="https://bit.ly/tedxutd26" target="_blank" rel="noopener noreferrer">
+          <img
+            src={homepagePoster}
+            alt="TEDxUTD Upcoming Event"
+            style={flyerStyle}
+          />
+        </a>
         <div style={countdownStyle}>
           {`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
         </div>
@@ -192,7 +197,7 @@ const HomePage = () => {
 
       {/* Featured Videos */}
       <section style={videosSectionStyle}>
-        <h2 style={{ fontSize: "2.5rem", fontWeight: "800" }}>2024 Highlight Videos</h2>
+        <h2 style={{ fontSize: "2.5rem", fontWeight: "800" }}>Highlight Videos</h2>
         <div style={videosGridStyle}>
           {videoIds.map((id, index) => (
             <div key={index} style={iframeWrapperStyle}>
