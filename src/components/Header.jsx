@@ -143,9 +143,9 @@ export default function Header() {
         <nav style={navStyle}>
           {[
             { to: "/", label: "Home" },
-            { to: "/talks", label: "Talks" },
             { to: "/events", label: "Events" },
             { to: "/conference2024", label: "2025 Conference" },
+            { to: "/talks", label: "Past Talks" },
             { to: "/about", label: "About Us" },
           ].map((item, idx) => (
             <Link

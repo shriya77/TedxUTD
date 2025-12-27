@@ -12,16 +12,42 @@ const Conference2024Page = () => {
   ];
 
   const speakers = [
-    { name: "Jane Doe", description: "Innovator in AI and ethics." },
-    { name: "John Smith", description: "Leadership and change expert." },
-    { name: "Alice Johnson", description: "Designing for impact advocate." },
-    { name: "Michael Lee", description: "Future of sustainability." },
+    {
+      name: "Jeanne Collins",
+      description: "Fired Over Zoom: Hit Pause, Listen, Design to find Life Balance",
+      image: "https://static.wixstatic.com/media/3a9766_f5bbb5a68e2d4fd59d4b95b90d5abbea~mv2.jpg/v1/fill/w_432,h_434,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/whatsapp_image_2025-03-24_at_08_45_edite.jpg"
+    },
+    {
+      name: "Abdulrahman Abou Dahesh",
+      description: "How to Create an Idea You Love—and Make People Fall in Love with It",
+      image: "https://static.wixstatic.com/media/3a9766_48d0922b9b6e4045a6c8b62b1cbfe408~mv2.jpg/v1/crop/x_2,y_0,w_716,h_719/fill/w_432,h_434,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/whatsapp_image_2025-03-24_at_08_46_edite.jpg"
+    },
+    {
+      name: "Abigail Zeman",
+      description: "Intentionally Unplugged: I Haven’t Watched Television Since Childhood",
+      image: "https://static.wixstatic.com/media/3a9766_1356903aac3f440783a42187bbad4748~mv2.jpg/v1/crop/x_9,y_0,w_556,h_575/fill/w_420,h_434,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/whatsapp_image_2025-03-24_at_08_47_edite.jpg"
+    },
+    {
+      name: "Nelly Kaakaty",
+      description: "The Unanswered Prayer: The Power in not Getting What you Want",
+      image: "https://static.wixstatic.com/media/3a9766_40a96db605f64f5d91d5e715feb1e8e7~mv2.jpg/v1/fill/w_432,h_434,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/whatsapp_image_2025-03-28_at_10_37_edite.jpg"
+    },
+    {
+      name: "Ty Hoesgen",
+      description: "How Introverts Become Better Public Speakers",
+      image: "https://static.wixstatic.com/media/3a9766_88a53ac710db4ef5a8a47c6eabcdcf16~mv2.jpg/v1/crop/x_1,y_0,w_585,h_588/fill/w_432,h_434,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/whatsapp_image_2025-03-24_at_08_46_edite.jpg"
+    },
+    {
+      name: "Lindsey Paoli",
+      description: "What to do BEFORE you see a therapist",
+      image: "https://static.wixstatic.com/media/3a9766_c9ce00995f30449fb88cfeb691d869db~mv2.jpg/v1/crop/x_8,y_0,w_464,h_479/fill/w_420,h_434,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/whatsapp_image_2025-03-24_at_08_47_edite.jpg"
+    },
   ];
 
   const testimonials = [
-    { text: "One of the most inspiring events I've ever attended!", author: "Attendee A" },
-    { text: "The talks changed my perspective completely.", author: "Attendee B" },
-    { text: "Such amazing energy and people at TEDxUTD!", author: "Attendee C" },
+    { text: "An unforgettable evening full of insight and inspiration!", author: "Alex R." },
+    { text: "The speakers challenged me to see the world differently.", author: "Priya S." },
+    { text: "Attending TEDxUTD 2025 inspired me to reflect on my own journey and ambitions.", author: "Jordan T." },
   ];
 
   // Responsive grid column counts based on window width
@@ -164,6 +190,16 @@ const Conference2024Page = () => {
           font-size: 1.25rem;
           box-sizing: border-box;
           overflow-x: hidden;
+          overflow: hidden;
+        }
+        .speaker-photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
+          border-radius: 0.375rem;
+          display: block;
+          background-color: #4b5563;
         }
         .speaker-name {
           font-size: 1.25rem;
@@ -271,9 +307,26 @@ const Conference2024Page = () => {
           {/* Theme Summary */}
           <section className="section px-md">
             <blockquote>
-              "Exploring Boundaries, Igniting Ideas" – The 2024 TEDxUTD theme
-              celebrated innovation, leadership, and the power of community.
+              "Charting New Horizons, Embracing the Journey" – The 2025 TEDxUTD theme celebrates discovery, growth, and the shared human experience.
             </blockquote>
+          </section>
+
+          {/* Speaker Highlights */}
+          <section className="section px-md speakers-section">
+            <h2 style={{ fontSize: "2.25rem", fontWeight: "700", marginBottom: "2.5rem", textAlign: "center" }}>
+              Speakers
+            </h2>
+            <div className="speakers-grid">
+              {speakers.map((speaker, idx) => (
+                <div key={idx} className="speaker-card" tabIndex={0} aria-label={`Speaker ${speaker.name}`}>
+                  <div className="speaker-photo">
+                    <img src={speaker.image} alt={`Photo of ${speaker.name}`} />
+                  </div>
+                  <h3 className="speaker-name">{speaker.name}</h3>
+                  <p className="speaker-description">{speaker.description}</p>
+                </div>
+              ))}
+            </div>
           </section>
 
           {/* Video Grid */}
@@ -290,22 +343,6 @@ const Conference2024Page = () => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Speaker Highlights */}
-          <section className="section px-md speakers-section">
-            <h2 style={{ fontSize: "2.25rem", fontWeight: "700", marginBottom: "2.5rem", textAlign: "center" }}>
-              Speaker Highlights
-            </h2>
-            <div className="speakers-grid">
-              {speakers.map((speaker, idx) => (
-                <div key={idx} className="speaker-card" tabIndex={0} aria-label={`Speaker ${speaker.name}`}>
-                  <div className="speaker-photo">Photo</div>
-                  <h3 className="speaker-name">{speaker.name}</h3>
-                  <p className="speaker-description">{speaker.description}</p>
                 </div>
               ))}
             </div>
