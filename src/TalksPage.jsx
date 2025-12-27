@@ -212,11 +212,14 @@ const ConferencesPage = () => {
 
   const styles = {
     page: {
-      width: "100%",
-      padding: "48px 24px",
-      boxSizing: "border-box",
+      background: "#000",
       fontFamily: "sans-serif",
-      color: "#222",
+      minHeight: "100vh",
+      minWidth: "100vw",
+      width: "100%",
+      boxSizing: "border-box",
+      padding: "48px 24px",
+      overflowX: "hidden",
     },
     conferencesGrid: {
       display: "grid",
@@ -224,6 +227,7 @@ const ConferencesPage = () => {
       gap: "24px",
       justifyContent: "center",
       justifyItems: "stretch",
+      width: "100%",   
     },
     conferenceBox: {
       border: "2px solid #e62b1e",
@@ -268,6 +272,7 @@ const ConferencesPage = () => {
     },
     modalContent: {
       backgroundColor: "white",
+      color: "#222",
       borderRadius: "8px",
       maxWidth: "800px",
       width: "90%",
