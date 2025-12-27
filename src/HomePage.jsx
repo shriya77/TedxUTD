@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import homepagePoster from "./assets/homepageposter.png";
 
@@ -101,7 +101,7 @@ const HomePage = () => {
     boxSizing: "border-box",
   };
 
-  const eventDate = new Date("January 9, 2026 23:59:00").getTime();
+  const eventDate = useMemo(() => new Date("January 9, 2026 23:59:00").getTime(), []);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -118,7 +118,7 @@ const HomePage = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [eventDate]);
 
   const countdownStyle = {
     color: "white",
@@ -131,6 +131,32 @@ const HomePage = () => {
     backgroundColor: "rgba(0, 0, 0, 0.6)",
     letterSpacing: "0.1em",
     textShadow: "2px 2px 8px rgba(0,0,0,0.8)",
+  };
+
+  // Contact form state (simple + reliable, no backend). This opens the user's email client.
+  const CONTACT_EMAIL = "tedxutd@gmail.com";
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+
+    const subject = `TEDxUTD Website Contact Form — ${contactName || "(No name)"}`;
+    const body =
+      `Name: ${contactName || ""}\n` +
+      `Email: ${contactEmail || ""}\n\n` +
+      `Message:\n${contactMessage || ""}`;
+
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Opens default mail app with everything pre-filled
+    window.location.href = mailto;
+
+    // Optional: clear fields after triggering mail client
+    setContactName("");
+    setContactEmail("");
+    setContactMessage("");
   };
 
   return (
@@ -254,6 +280,9 @@ const HomePage = () => {
         <h2 style={{ fontSize: "2.5rem", fontWeight: "800", marginBottom: "2rem" }}>
           Contact Us
         </h2>
+        <p style={{ color: "#bbb", marginBottom: "1.5rem" }}>
+          This form opens your email app and pre-fills a message to <span style={{ color: "white" }}>{CONTACT_EMAIL}</span>.
+        </p>
         <form
           style={{
             maxWidth: "600px",
@@ -262,15 +291,14 @@ const HomePage = () => {
             flexDirection: "column",
             gap: "1.5rem",
           }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Message sent! (This is a demo)");
-          }}
+          onSubmit={handleContactSubmit}
         >
           <input
             type="text"
             placeholder="Your Name"
             required
+            value={contactName}
+            onChange={(e) => setContactName(e.target.value)}
             style={{
               padding: "1rem",
               borderRadius: "0.5rem",
@@ -285,6 +313,8 @@ const HomePage = () => {
             type="email"
             placeholder="Your Email"
             required
+            value={contactEmail}
+            onChange={(e) => setContactEmail(e.target.value)}
             style={{
               padding: "1rem",
               borderRadius: "0.5rem",
@@ -299,6 +329,8 @@ const HomePage = () => {
             placeholder="Your Message"
             rows="5"
             required
+            value={contactMessage}
+            onChange={(e) => setContactMessage(e.target.value)}
             style={{
               padding: "1rem",
               borderRadius: "0.5rem",
