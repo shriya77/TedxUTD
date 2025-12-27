@@ -8,6 +8,7 @@ const AboutPage = () => {
     { year: "2021", event: "Hosted hybrid events with global online reach." },
     { year: "2023", event: "Introduced themed Salons and community events." },
     { year: "2024", event: "Biggest conference yet with 6 major talks." },
+    { year: "2025", event: "The Journey of Life held at Jonsson Performance Hall." },
   ];
 
   const team = [

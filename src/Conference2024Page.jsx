@@ -261,7 +261,11 @@ const Conference2024Page = () => {
         <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
           {/* Hero Title */}
           <section className="section text-center">
-            <h1>TEDxUTD 2024 Conference</h1>
+            <h1>TEDxUTD 2025: “The Journey of Life”</h1>
+            <br></br>
+            <p style={{ fontSize: "1.25rem", marginTop: "0.5rem" }}>Date: April 18, 2025</p>
+            <p style={{ fontSize: "1.25rem", marginTop: "0.25rem" }}>Time: 5:00 PM–10:00 PM CDT</p>
+            <p style={{ fontSize: "1.25rem", marginTop: "0.25rem" }}>Venue: Jonsson Performance Hall (JO 2.604), UT Dallas</p>
           </section>
 
           {/* Theme Summary */}

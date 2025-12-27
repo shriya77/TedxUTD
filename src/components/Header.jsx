@@ -145,7 +145,7 @@ export default function Header() {
             { to: "/", label: "Home" },
             { to: "/talks", label: "Talks" },
             { to: "/events", label: "Events" },
-            { to: "/conference2024", label: "2024 Conference" },
+            { to: "/conference2024", label: "2025 Conference" },
             { to: "/about", label: "About Us" },
           ].map((item, idx) => (
             <Link

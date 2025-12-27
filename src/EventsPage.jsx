@@ -4,41 +4,25 @@ const EventsPage = () => {
   const upcomingEvents = [
     {
       id: 1,
-      name: "Salon 1 TEDXUTD",
-      date: "October 7",
-      time: "5:00 PM - 7:00 PM",
-      location: "SCI 2.210",
-      flyer: "https://via.placeholder.com/400x250.png?text=Salon+1+TEDXUTD",
+      name: "TEDxUTD Salon",
+      date: "February 18, 2026",
+      time: "11:30 AM – 4:30 PM",
+      location: "Artemis Hall, Student Union (SU)",
+      flyer: "https://i.ytimg.com/vi/Ls3JtN6MisQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDg8MjZVIktYVl4D0FIPb7ZDYPA_w",
+      description:
+        "A curated TEDx-style salon featuring two live speakers, interactive sessions, and in-person engagement. This event serves as a lead-up to the main conference and emphasizes discussion, community, and idea exchange.",
     },
     {
       id: 2,
-      name: "Salon 2 TEDX",
-      date: "November 19",
-      time: "5:30 PM - 7:00 PM",
-      location: "SCI 2.210",
-      flyer: "https://via.placeholder.com/400x250.png?text=Salon+2+TEDX",
+      name: "TEDxUTD 2026 Main Conference",
+      date: "April 17, 2026",
+      time: "TBD (Tentative: afternoon → evening)",
+      location: "Jonsson (JO) Performance Hall",
+      flyer: "https://static.unimy.com/public/cache/school-video-be-a-7-leaf-clover-business-strategies-for-life-dr-shawn-carraher-at-tedxutd-1553786098-500x300.webp",
+      description:
+        "Full-scale TEDxUTD conference featuring selected speakers, talks, and production-level programming centered on life beyond academics—careers, identity, impact, and growth.",
     },
   ];
-
-  const pastEvents = [
-    {
-      id: 1,
-      name: "TEDxUTD 2024 Conference",
-      flyer: "https://via.placeholder.com/300x180.png?text=Past+Event+1",
-      recap: "A day full of inspiring talks and networking opportunities.",
-      highlights: "#",
-    },
-    {
-      id: 2,
-      name: "TEDxUTD Salon 2023",
-      flyer: "https://via.placeholder.com/300x180.png?text=Past+Event+2",
-      recap: "Smaller, intimate session exploring leadership and design.",
-      highlights: "#",
-    },
-  ];
-
-  // Responsive grid styles using media queries require CSS or styled-components.
-  // Since only inline styles allowed, we use React state and window resize listener to determine columns.
 
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
@@ -49,18 +33,8 @@ const EventsPage = () => {
   }, []);
 
   let upcomingGridColumns = 1;
-  if (windowWidth >= 1024) {
-    upcomingGridColumns = 3;
-  } else if (windowWidth >= 640) {
-    upcomingGridColumns = 2;
-  }
-
-  let pastGridColumns = 1;
-  if (windowWidth >= 1024) {
-    pastGridColumns = 3;
-  } else if (windowWidth >= 640) {
-    pastGridColumns = 2;
-  }
+  if (windowWidth >= 1024) upcomingGridColumns = 3;
+  else if (windowWidth >= 640) upcomingGridColumns = 2;
 
   const containerStyle = {
     backgroundColor: "black",
@@ -99,13 +73,6 @@ const EventsPage = () => {
     boxSizing: "border-box",
   };
 
-  const pastGridStyle = {
-    display: "grid",
-    gridTemplateColumns: `repeat(${pastGridColumns}, 1fr)`,
-    gap: 32,
-    boxSizing: "border-box",
-  };
-
   const cardStyle = {
     backgroundColor: "#18181b",
     borderRadius: 12,
@@ -116,14 +83,10 @@ const EventsPage = () => {
     cursor: "default",
   };
 
-  const pastCardStyle = {
-    backgroundColor: "#27272a",
+  const flyerContainerStyle = {
+    position: "relative",
     borderRadius: 12,
     overflow: "hidden",
-    boxShadow: "0 3px 8px rgba(0,0,0,0.4)",
-    boxSizing: "border-box",
-    transition: "transform 0.3s",
-    cursor: "default",
   };
 
   const flyerStyleUpcoming = {
@@ -135,13 +98,14 @@ const EventsPage = () => {
     display: "block",
   };
 
-  const flyerStylePast = {
+  const overlayStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
     width: "100%",
-    maxWidth: "100%",
-    height: 160,
-    objectFit: "cover",
-    boxSizing: "border-box",
-    display: "block",
+    height: "100%",
+    backgroundColor: "rgba(255,255,255,0.4)",
+    borderRadius: 12,
   };
 
   const upcomingContentStyle = {
@@ -149,19 +113,8 @@ const EventsPage = () => {
     boxSizing: "border-box",
   };
 
-  const pastContentStyle = {
-    padding: 16,
-    boxSizing: "border-box",
-  };
-
   const upcomingNameStyle = {
     fontSize: 24,
-    fontWeight: "700",
-    marginBottom: 8,
-  };
-
-  const pastNameStyle = {
-    fontSize: 20,
     fontWeight: "700",
     marginBottom: 8,
   };
@@ -176,6 +129,13 @@ const EventsPage = () => {
     marginBottom: 16,
   };
 
+  const descriptionStyle = {
+    color: "#a1a1aa",
+    marginBottom: 16,
+    fontSize: 14,
+    lineHeight: 1.4,
+  };
+
   const buttonStyle = {
     backgroundColor: "#e62b1e",
     color: "white",
@@ -188,21 +148,8 @@ const EventsPage = () => {
     userSelect: "none",
   };
 
-  const linkStyle = {
-    color: "#e62b1e",
-    fontWeight: "600",
-    textDecoration: "none",
-    cursor: "pointer",
-    userSelect: "none",
-    transition: "color 0.3s",
-  };
-
-  // Hover states managed with React useState for each card/button.
-
   const [hoveredUpcoming, setHoveredUpcoming] = React.useState(null);
-  const [hoveredPast, setHoveredPast] = React.useState(null);
   const [hoveredButton, setHoveredButton] = React.useState(null);
-  const [hoveredLink, setHoveredLink] = React.useState(null);
 
   return (
     <div style={containerStyle}>
@@ -220,17 +167,21 @@ const EventsPage = () => {
             onMouseEnter={() => setHoveredUpcoming(event.id)}
             onMouseLeave={() => setHoveredUpcoming(null)}
           >
-            <img
-              src={event.flyer}
-              alt={event.name}
-              style={flyerStyleUpcoming}
-              draggable={false}
-            />
+            <div style={flyerContainerStyle}>
+              <img
+                src={event.flyer}
+                alt={event.name}
+                style={flyerStyleUpcoming}
+                draggable={false}
+              />
+              <div style={overlayStyle} />
+            </div>
             <div style={upcomingContentStyle}>
               <h2 style={upcomingNameStyle}>{event.name}</h2>
               <p style={textGrayStyle}>{event.date}</p>
               <p style={textGrayStyle}>{event.time}</p>
               <p style={upcomingLocationStyle}>{event.location}</p>
+              <p style={descriptionStyle}>{event.description}</p>
               <button
                 style={{
                   ...buttonStyle,
@@ -249,47 +200,38 @@ const EventsPage = () => {
         ))}
       </div>
 
-      {/* Past Events */}
+      {/* Past Events Instagram Embed */}
       <h2 style={pastTitleStyle}>Past Events</h2>
-      <div style={pastGridStyle}>
-        {pastEvents.map((event) => (
-          <div
-            key={event.id}
-            style={{
-              ...pastCardStyle,
-              transform: hoveredPast === event.id ? "scale(1.05)" : "scale(1)",
-            }}
-            onMouseEnter={() => setHoveredPast(event.id)}
-            onMouseLeave={() => setHoveredPast(null)}
+      <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink="https://www.instagram.com/tedxutd/?utm_source=ig_embed&utm_campaign=loading"
+          data-instgrm-version="14"
+          style={{
+            background: "#FFF",
+            border: 0,
+            borderRadius: 3,
+            boxShadow:
+              "0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)",
+            margin: "1px",
+            maxWidth: 540,
+            minWidth: 326,
+            padding: 0,
+            width: "99.375%",
+            boxSizing: "border-box",
+          }}
+        >
+          <a
+            href="https://www.instagram.com/tedxutd/?utm_source=ig_embed&utm_campaign=loading"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "#000" }}
           >
-            <img
-              src={event.flyer}
-              alt={event.name}
-              style={flyerStylePast}
-              draggable={false}
-            />
-            <div style={pastContentStyle}>
-              <h3 style={pastNameStyle}>{event.name}</h3>
-              <p style={{ ...textGrayStyle, marginBottom: 12 }}>{event.recap}</p>
-              {event.highlights && (
-                <a
-                  href={event.highlights}
-                  style={{
-                    ...linkStyle,
-                    color:
-                      hoveredLink === event.id ? "#b7211b" : "#e62b1e",
-                    textDecoration: hoveredLink === event.id ? "underline" : "none",
-                  }}
-                  onMouseEnter={() => setHoveredLink(event.id)}
-                  onMouseLeave={() => setHoveredLink(null)}
-                >
-                  View Highlights →
-                </a>
-              )}
-            </div>
-          </div>
-        ))}
+            View TEDxUTD on Instagram
+          </a>
+        </blockquote>
       </div>
+      <script async src="//www.instagram.com/embed.js"></script>
     </div>
   );
 };
